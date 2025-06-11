@@ -63,6 +63,7 @@ class MenuItemWidget extends StatelessWidget {
               icon: Icon(
                 item.isFavorite ? Icons.star : Icons.star_border_outlined,
                 color: Colors.yellow[900],
+                size: 80,
               ),
               onPressed: () {
                 context.read<FavoriteCubit>().favorite(item);
