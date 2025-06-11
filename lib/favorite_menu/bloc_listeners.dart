@@ -25,20 +25,10 @@ class MenuPageBlocListeners extends StatelessWidget {
 
   void _listenFavoriteState(BuildContext context, state) {
     if (state is FavoriteLoading) {
-      /*  ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Favori yükleniyor...')),
-      ); */
-
-      context.read<MenuCubit>().favorite(true, state.item);
+      context.read<MenuCubit>().favorite(state.item);
     } else if (state is FavoriteLoaded) {
-      /*  ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Favori yüklendi!')),
-      ); */
     } else if (state is FavoriteFailure) {
-      /*  ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Favori yüklenemedi!')),
-      ); */
-      context.read<MenuCubit>().favorite(false, state.item);
+      context.read<MenuCubit>().favorite(state.item);
     }
   }
 }

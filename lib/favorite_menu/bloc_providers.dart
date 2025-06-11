@@ -13,7 +13,7 @@ class MenuPageWrapperProvider extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => MenuCubit(MenuRepository()),
+          create: (context) => MenuCubit(),
         ),
         BlocProvider(
           create: (context) => FavoriteCubit(MenuRepository()),
