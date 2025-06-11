@@ -53,23 +53,53 @@ class MenuItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Container(
-        child: Column(
-          children: [
-            Text(item.title, style: const TextStyle(fontSize: 50)),
-            const SizedBox(height: 10),
-            IconButton(
-              icon: Icon(
+    return InkWell(
+      onLongPress: () async {
+        final result = await showModalBottomSheet(
+          context: context,
+          builder: (BuildContext context) {
+            return Container(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ListTile(
+                    leading: Icon(
+                      item.isFavorite ? Icons.star : Icons.star_border,
+                      color: Colors.yellow[900],
+                    ),
+                    title: Text(
+                      item.isFavorite
+                          ? 'Favorilerden çıkar'
+                          : 'Favorilere ekle',
+                    ),
+                    onTap: () {
+                      Navigator.pop(context, true);
+                    },
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+
+        if (result == true && context.mounted) {
+          context.read<FavoriteCubit>().favorite(item);
+        }
+      },
+      child: Card(
+        child: Container(
+          child: Column(
+            children: [
+              Text(item.title, style: const TextStyle(fontSize: 50)),
+              const SizedBox(height: 10),
+              Icon(
                 item.isFavorite ? Icons.star : Icons.star_border_outlined,
                 color: Colors.yellow[900],
                 size: 80,
               ),
-              onPressed: () {
-                context.read<FavoriteCubit>().favorite(item);
-              },
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
