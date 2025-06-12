@@ -37,7 +37,10 @@ class _ReorderListPageState extends State<ReorderListPage> {
           items: state.items,
           itemBuilder: (BuildContext context, int index) {
             final food = state.items[index];
+            final randomColor =
+                Colors.primaries[index % Colors.primaries.length];
             return Card(
+              color: randomColor,
               key: ValueKey(food.id),
               margin: EdgeInsets.zero,
               child: Container(
@@ -46,7 +49,7 @@ class _ReorderListPageState extends State<ReorderListPage> {
                 alignment: Alignment.center,
                 child: Text(
                   food.title,
-                  style: const TextStyle(fontSize: 16),
+                  style: const TextStyle(fontSize: 16, color: Colors.white),
                   textAlign: TextAlign.center,
                 ),
               ),
