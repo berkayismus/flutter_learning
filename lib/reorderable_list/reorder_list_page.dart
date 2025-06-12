@@ -49,7 +49,7 @@ class _ReorderListPageState extends State<ReorderListPage> {
                 alignment: Alignment.center,
                 child: Text(
                   food.title,
-                  style: const TextStyle(fontSize: 16, color: Colors.white),
+                  style: const TextStyle(fontSize: 30, color: Colors.white),
                   textAlign: TextAlign.center,
                 ),
               ),
